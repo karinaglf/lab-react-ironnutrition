@@ -12,7 +12,7 @@ function FoodList() {
     //rendered array of Foods
     const [foods, setFoods] = useState(foodsJson)
     //toggle button state
-    const [isFormShowing, setIsFormShowing] = useState(true);
+    const [isFormShowing, setIsFormShowing] = useState(false);
     //rendered list state
     const [isFoodArrEmpty, setIsFoodArrEmpty] = useState(false);
 
@@ -31,10 +31,10 @@ function FoodList() {
 }
 
     //Function - delete food from FoodBox.js > delete button
-    const deleteFood = (foodId) => {
+    const deleteFood = (foodName) => {
         
         const filteredFoods = foods.filter(food => {
-            return food.id !== foodId;
+            return food.name !== foodName;
         })
 
         if(filteredFoods.length === 0) {
@@ -42,19 +42,21 @@ function FoodList() {
         }
 
         setFoods(filteredFoods);
+        console.log(`foodObj Deleting`, foodName);
     }
 
     //Function - search foods from SearchFood,js
     const searchFoodList = (queryString) => {
-        let searchedFoods;
-        if (queryString === "" || !queryString) {
-            searchedFoods = allFoods;
-        } else {
-            searchedFoods = allFoods.search((oneFood) => {
-                return oneFood.name.toLowerCase() === queryString.toLowerCase;
-            })
+        let searchedFoods = allFoods.filter((food) => {
+            return food.name.toLowerCase().includes(queryString.toLowerCase());
+        })
+
+        if(searchedFoods.length === 0) {
+            setIsFoodArrEmpty(true);
         }
+
         setFoods(searchedFoods);
+       
     }
 
     //Toggle Form
@@ -62,21 +64,20 @@ function FoodList() {
         setIsFormShowing(!isFormShowing);
     }
 
-    console.log(`isFoodArrEmpty`, isFoodArrEmpty)
     return (
         <>
-
+        <Divider><h2>Add a New Food</h2></Divider>
         {isFormShowing && <AddFoodForm addNewFood={addNewFood}/>}
-        
-        <button onClick={toggleAddForm}>
+
+        <Button onClick={toggleAddForm}>
             {isFormShowing ? "Hide Form" : "Show Form"}
-        </button>
+        </Button>
 
         <SearchFood searchFoodList={searchFoodList}/>
 
         <Divider><h2>Food List</h2></Divider>
 
-        <Row style={{ width: "100%", justifyContent: "center" }}>
+        <Row gutter={[5, 30]} style={{ width: "100%"}}>
 
         {isFoodArrEmpty ? 
         

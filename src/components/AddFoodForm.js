@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Divider, Input } from "antd";
+import { Row, Button, Input } from "antd";
 
 function AddFoodForm( {addNewFood}) {
     const [foodName, setFoodName] = useState("");
@@ -37,7 +37,6 @@ function AddFoodForm( {addNewFood}) {
 
     return ( 
         <>
-        <Divider><h2>Add a New Food</h2></Divider>
         <Row style={{ width: "100%", justifyContent: "center" }}>
 
         <form onSubmit={handleSubmit}>            
@@ -53,7 +52,7 @@ function AddFoodForm( {addNewFood}) {
             <label>Servings</label>
             <Input value={servings} type="number" onChange={handleServings} />
 
-            <button type="submit">Create</button>
+            <Button className="form-btn" type="submit">Create</Button>
         </form>
         </Row>
         </>

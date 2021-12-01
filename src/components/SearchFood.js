@@ -6,6 +6,8 @@ function SearchFood({searchFoodList}) {
 
     const handleSearch = (event) => {
         //setSearchString({ $regex: event.target.value, $options: 'i' })
+        console.log(event.target.value);
+        
         setSearchString(event.target.value);
 
         searchFoodList(event.target.value);
@@ -13,7 +15,7 @@ function SearchFood({searchFoodList}) {
 
     return ( 
         <>
-            <h2>Search Food</h2>
+            <Divider><h2>Search Food</h2></Divider>
             <Input value={searchString} placeholder="Enter search query" type="text" onChange={handleSearch} />
         </>
      );
