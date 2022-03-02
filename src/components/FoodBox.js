@@ -9,7 +9,7 @@ function FoodBox( {foodObj, deleteFood}) {
                 title={foodObj.name}
                 style={{ width: 230, height: 300, margin: 10 }}
             >
-                <img src={foodObj.image} height={60} />
+                <img src={foodObj.image} height={60} alt={foodObj.name}/>
                 <p>Calories: {foodObj.calories}</p>
                 <p>Servings: {foodObj.servings}</p>
                 <p>

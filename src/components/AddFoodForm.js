@@ -12,19 +12,20 @@ function AddFoodForm( {addNewFood}) {
     const handleCalories = (event) => setCalories(event.target.value);
     const handleServings = (event) => setServings(event.target.value)
 
+
     const handleSubmit = (event) => {
+        console.log(event)
         // Prevent the page reload (default behavior of the browser)
         event.preventDefault();
-
+        console.log('clicking')
         //Get data from inputs and update
         const newFood = {
-            _id: foodName + calories,
             name: foodName,
             image: image,
             calories: calories,
             servings: servings
         }
-        //console.log(`newFood`, newFood)
+        console.log(`newFood`, newFood)
 
         addNewFood(newFood);
 
@@ -39,7 +40,7 @@ function AddFoodForm( {addNewFood}) {
         <>
         <Row style={{ width: "100%", justifyContent: "center" }}>
 
-        <form onSubmit={handleSubmit}>            
+        <form onSubmit={handleSubmit}>   
             <label>Name</label>
             <Input value={foodName} type="text" onChange={handleFoodName} />
 
@@ -52,7 +53,7 @@ function AddFoodForm( {addNewFood}) {
             <label>Servings</label>
             <Input value={servings} type="number" onChange={handleServings} />
 
-            <Button className="form-btn" type="submit">Create</Button>
+            <button className="form-btn" type="submit">Create</button>
         </form>
         </Row>
         </>
